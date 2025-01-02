@@ -1,21 +1,5 @@
 import ProductCard from './product-card'
-
-interface Product {
-  id: string
-  name: string
-  slug: string
-  category: string
-  images: string[]
-  brand: string
-  description: string
-  stock: number
-  price: number
-  rating: number
-  numReviews: number
-  isFeatured: boolean
-  banner: string | null
-  createdAt: Date
-}
+import { Product } from '@/types'
 
 const ProductList = ({
   data,
