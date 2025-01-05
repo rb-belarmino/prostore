@@ -21,3 +21,7 @@ export const insertProductSchema = z.object({
   banner: z.string().nullable(),
   price: currency
 })
+
+// Schema for signing users in
+
+export const signInFormSchema = z.object({})
