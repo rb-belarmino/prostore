@@ -26,7 +26,6 @@ const calcPrice = (items: CartItem[]) => {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function addItemToCart(data: CartItem) {
   try {
     // Check for cart cookie
