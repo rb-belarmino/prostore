@@ -25,20 +25,20 @@ export async function createOrder() {
     const user = await getUserById(userId)
 
     if (!cart || cart.items.length === 0) {
-      return { success: false, message: 'Cart is empty', redirect: '/cart' }
+      return { success: false, message: 'Cart is empty', redirectTo: '/cart' }
     }
     if (!user.address) {
       return {
         success: false,
         message: 'No shipping address',
-        redirect: '/shipping-address'
+        redirectTo: '/shipping-address'
       }
     }
     if (!user.paymentMethod) {
       return {
         success: false,
         message: 'No payment method',
-        redirect: '/payment-method'
+        redirectTo: '/payment-method'
       }
     }
 
