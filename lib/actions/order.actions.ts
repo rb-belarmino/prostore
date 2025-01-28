@@ -1,4 +1,4 @@
-'user server'
+'use server'
 
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { formatError } from '../utils'
@@ -9,7 +9,7 @@ import { insertOrderSchema } from '../validators'
 import { prisma } from '@/db/prisma'
 import { CartItem } from '@/types'
 
-//Create order and order items
+//Create order and create order items
 
 export async function createOrder() {
   try {
@@ -53,7 +53,7 @@ export async function createOrder() {
       totalPrice: cart.totalPrice
     })
 
-    // Create a transaction to create order and order items in the database
+    // Create a transaction to create order and order items in database
     const insertedOrderId = await prisma.$transaction(async tx => {
       // Create order
       const insertedOrder = await tx.order.create({
