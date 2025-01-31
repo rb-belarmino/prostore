@@ -65,8 +65,7 @@ export async function createOrder() {
           data: {
             ...item,
             price: item.price,
-            orderID: insertedOrder.id,
-            productID: item.productId
+            orderId: insertedOrder.id
           }
         })
       }
