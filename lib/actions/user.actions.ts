@@ -173,8 +173,7 @@ export async function updateProfile(user: { name: string; email: string }) {
         id: currentUser.id
       },
       data: {
-        name: user.name,
-        email: user.email
+        name: user.name
       }
     })
 
