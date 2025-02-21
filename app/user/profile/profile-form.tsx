@@ -1,6 +1,13 @@
 'use client'
 
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { updateProfileSchema } from '@/lib/validators'
@@ -22,7 +29,9 @@ const ProfileForm = () => {
 
   const { toast } = useToast()
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    return
+  }
 
   return (
     <Form {...form}>
@@ -37,12 +46,42 @@ const ProfileForm = () => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input></Input>
+                  <Input
+                    disabled
+                    placeholder="Email"
+                    className="imput-field"
+                    {...field}
+                  />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input
+                    placeholder="Name"
+                    className="imput-field"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
         </div>
+        <Button
+          type="submit"
+          size="lg"
+          className="button col-span-2 w-full"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? 'Submiting...' : 'Update Profile'}
+        </Button>
       </form>
     </Form>
   )
