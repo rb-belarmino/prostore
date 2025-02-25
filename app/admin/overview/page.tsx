@@ -14,14 +14,14 @@ import { BadgeDollarSign, Barcode, CreditCard, Users } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Charts from './charts'
-import { reuireAdmin } from '@/lib/auth-guard'
+import { requireAdmin } from '@/lib/auth-guard'
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard'
 }
 
 const AdminOverviewPage = async () => {
-  await reuireAdmin()
+  await requireAdmin()
 
   const session = await auth()
 
