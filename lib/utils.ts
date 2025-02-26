@@ -21,7 +21,7 @@ export function formatNumberWithDecimal(num: number): string {
 
 // Format errors
 
-export async function formatError(error: any) {
+export function formatError(error: any) {
   if (error.name === 'ZodError') {
     // Handle Zod error
 
