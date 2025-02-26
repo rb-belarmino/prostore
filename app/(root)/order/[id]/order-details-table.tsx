@@ -10,11 +10,13 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { Button } from '@/components/ui/button'
 import { formatCurrency, formatDateTime, formatId } from '@/lib/utils'
 import { Order } from '@/types'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useToast } from '@/hooks/use-toast'
+import { useTransition } from 'react'
 import {
   PayPalButtons,
   PayPalScriptProvider,
@@ -22,15 +24,19 @@ import {
 } from '@paypal/react-paypal-js'
 import {
   createPayPalOrder,
-  approvePayPalOrder
+  approvePayPalOrder,
+  updateOrderToPaidCOD,
+  deliverOrder
 } from '@/lib/actions/order.actions'
 
 const OrderDetailsTable = ({
   order,
-  paypalClientId
+  paypalClientId,
+  isAdmin
 }: {
   order: Order
   paypalClientId: string
+  isAdmin: boolean
 }) => {
   const {
     id,
@@ -79,6 +85,56 @@ const OrderDetailsTable = ({
       variant: res.success ? 'default' : 'destructive',
       description: res.message
     })
+  }
+
+  // Button to mark order as paid
+
+  const MarkAsPaidButton = () => {
+    const [isPending, startTransition] = useTransition()
+    const { toast } = useToast()
+
+    return (
+      <Button
+        type="button"
+        onClick={() =>
+          startTransition(async () => {
+            const res = await updateOrderToPaidCOD(order.id)
+            toast({
+              variant: res.success ? 'default' : 'destructive',
+              description: res.message
+            })
+          })
+        }
+        disabled={isPending}
+      >
+        {isPending ? 'processing...' : 'Mark as Paid'}
+      </Button>
+    )
+  }
+
+  // Button to mark order as delivered
+
+  const MarkAsDeliveredButton = () => {
+    const [isPending, startTransition] = useTransition()
+    const { toast } = useToast()
+
+    return (
+      <Button
+        type="button"
+        onClick={() =>
+          startTransition(async () => {
+            const res = await deliverOrder(order.id)
+            toast({
+              variant: res.success ? 'default' : 'destructive',
+              description: res.message
+            })
+          })
+        }
+        disabled={isPending}
+      >
+        {isPending ? 'processing...' : 'Mark as Delivered'}
+      </Button>
+    )
   }
 
   return (
@@ -192,6 +248,12 @@ const OrderDetailsTable = ({
                   </PayPalScriptProvider>
                 </div>
               )}
+
+              {/* Cash on Delivery */}
+              {isAdmin && !isPaid && paymentMethod === 'CashOnDelivery' && (
+                <MarkAsPaidButton />
+              )}
+              {isAdmin && isPaid && !isDelivered && <MarkAsDeliveredButton />}
             </CardContent>
           </Card>
         </div>
