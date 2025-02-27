@@ -67,7 +67,7 @@ const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
 
 // Format currency using formatter above
 
-export function formatCurrency(amount: number | string | null) {
+export function formatCurrency(amount: number | string | null | undefined) {
   if (typeof amount === 'number') {
     return CURRENCY_FORMATTER.format(amount)
   } else if (typeof amount === 'string') {
