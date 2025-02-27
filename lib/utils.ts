@@ -73,7 +73,7 @@ export function formatCurrency(amount: number | string | null) {
   } else if (typeof amount === 'string') {
     return CURRENCY_FORMATTER.format(Number(amount))
   } else {
-    return 'NaN'
+    return 0
   }
 }
 
