@@ -1,3 +1,5 @@
+import { title } from 'process'
+
 export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'Prostore'
 export const APP_DESCRIPTION =
   process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
@@ -55,3 +57,9 @@ export const productDefaultValues = {
 export const USER_ROLES = process.env.USER_ROLES
   ? process.env.USER_ROLES.split(', ')
   : ['user', 'admin']
+
+export const reviewFormDefaultValues = {
+  title: '',
+  comment: '',
+  rating: 0
+}
