@@ -27,7 +27,7 @@ const StripePayment = ({
 
   const { theme, systemTheme } = useTheme()
 
-  // Stripe form component
+  // Stripe Form Component
   const StripeForm = () => {
     const stripe = useStripe()
     const elements = useElements()
@@ -39,9 +39,10 @@ const StripePayment = ({
     const handleSubmit = async (e: FormEvent) => {
       e.preventDefault()
 
-      if (stripe == null || elements == null || email === null) return
+      if (stripe == null || elements == null || email == null) return
 
       setIsLoading(true)
+
       stripe
         .confirmPayment({
           elements,

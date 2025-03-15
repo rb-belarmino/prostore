@@ -6,7 +6,7 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
-const SuccesPage = async (props: {
+const SuccessPage = async (props: {
   params: Promise<{ id: string }>
   searchParams: Promise<{ payment_intent: string }>
 }) => {
@@ -22,17 +22,16 @@ const SuccesPage = async (props: {
 
   // Check if payment intent is valid
   if (
-    paymentIntent.metadata.orderId === null ||
+    paymentIntent.metadata.orderId == null ||
     paymentIntent.metadata.orderId !== order.id.toString()
   ) {
     return notFound()
   }
 
-  // Check if payment intent is successful
-  const isSucces = paymentIntent.status === 'succeeded'
-  if (!isSucces) {
-    return redirect(`/order/${id}`)
-  }
+  // Check if payment is successful
+  const isSuccess = paymentIntent.status === 'succeeded'
+
+  if (!isSuccess) return redirect(`/order/${id}`)
 
   return (
     <div className="max-w-4xl w-full mx-auto space-y-8">
@@ -47,4 +46,4 @@ const SuccesPage = async (props: {
   )
 }
 
-export default SuccesPage
+export default SuccessPage
