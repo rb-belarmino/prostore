@@ -1,5 +1,4 @@
 'use client'
-
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -36,7 +35,7 @@ const OrderDetailsTable = ({
   isAdmin,
   stripeClientSecret
 }: {
-  order: Order
+  order: Omit<Order, 'paymentResult'>
   paypalClientId: string
   isAdmin: boolean
   stripeClientSecret: string | null
@@ -65,7 +64,7 @@ const OrderDetailsTable = ({
     if (isPending) {
       status = 'Loading PayPal...'
     } else if (isRejected) {
-      status = 'Error loading PayPal'
+      status = 'Error Loading PayPal'
     }
     return status
   }
@@ -79,11 +78,13 @@ const OrderDetailsTable = ({
         description: res.message
       })
     }
+
     return res.data
   }
 
   const handleApprovePayPalOrder = async (data: { orderID: string }) => {
     const res = await approvePayPalOrder(order.id, data)
+
     toast({
       variant: res.success ? 'default' : 'destructive',
       description: res.message
@@ -91,7 +92,6 @@ const OrderDetailsTable = ({
   }
 
   // Button to mark order as paid
-
   const MarkAsPaidButton = () => {
     const [isPending, startTransition] = useTransition()
     const { toast } = useToast()
@@ -99,6 +99,7 @@ const OrderDetailsTable = ({
     return (
       <Button
         type="button"
+        disabled={isPending}
         onClick={() =>
           startTransition(async () => {
             const res = await updateOrderToPaidCOD(order.id)
@@ -108,15 +109,13 @@ const OrderDetailsTable = ({
             })
           })
         }
-        disabled={isPending}
       >
-        {isPending ? 'processing...' : 'Mark as Paid'}
+        {isPending ? 'processing...' : 'Mark As Paid'}
       </Button>
     )
   }
 
   // Button to mark order as delivered
-
   const MarkAsDeliveredButton = () => {
     const [isPending, startTransition] = useTransition()
     const { toast } = useToast()
@@ -124,6 +123,7 @@ const OrderDetailsTable = ({
     return (
       <Button
         type="button"
+        disabled={isPending}
         onClick={() =>
           startTransition(async () => {
             const res = await deliverOrder(order.id)
@@ -133,9 +133,8 @@ const OrderDetailsTable = ({
             })
           })
         }
-        disabled={isPending}
       >
-        {isPending ? 'processing...' : 'Mark as Delivered'}
+        {isPending ? 'processing...' : 'Mark As Delivered'}
       </Button>
     )
   }
@@ -144,7 +143,7 @@ const OrderDetailsTable = ({
     <>
       <h1 className="py-4 text-2xl">Order {formatId(id)}</h1>
       <div className="grid md:grid-cols-3 md:gap-5">
-        <div className="col-span-2 space-4-y overflow-x-auto">
+        <div className="col-span-2 space-4-y overlow-x-auto">
           <Card>
             <CardContent className="p-4 gap-4">
               <h2 className="text-xl pb-4">Payment Method</h2>
@@ -154,7 +153,7 @@ const OrderDetailsTable = ({
                   Paid at {formatDateTime(paidAt!).dateTime}
                 </Badge>
               ) : (
-                <Badge variant="destructive">Not Paid</Badge>
+                <Badge variant="destructive">Not paid</Badge>
               )}
             </CardContent>
           </Card>
@@ -235,14 +234,11 @@ const OrderDetailsTable = ({
                 <div>Total</div>
                 <div>{formatCurrency(totalPrice)}</div>
               </div>
-              {/** PayPal Payment */}
+
+              {/* PayPal Payment */}
               {!isPaid && paymentMethod === 'PayPal' && (
                 <div>
-                  <PayPalScriptProvider
-                    options={{
-                      clientId: paypalClientId
-                    }}
-                  >
+                  <PayPalScriptProvider options={{ clientId: paypalClientId }}>
                     <PrintLoadingState />
                     <PayPalButtons
                       createOrder={handleCreatePayPalOrder}
@@ -252,16 +248,16 @@ const OrderDetailsTable = ({
                 </div>
               )}
 
-              {/** Stripe Payment */}
+              {/* Stripe Payment */}
               {!isPaid && paymentMethod === 'Stripe' && stripeClientSecret && (
                 <StripePayment
-                  clientSecret={stripeClientSecret}
-                  priceInCents={Number(totalPrice) * 100}
+                  priceInCents={Number(order.totalPrice) * 100}
                   orderId={order.id}
+                  clientSecret={stripeClientSecret}
                 />
               )}
 
-              {/* Cash on Delivery */}
+              {/* Cash On Delivery */}
               {isAdmin && !isPaid && paymentMethod === 'CashOnDelivery' && (
                 <MarkAsPaidButton />
               )}
