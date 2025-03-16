@@ -28,16 +28,16 @@ PurchaseReceiptEmail.PreviewProps = {
     paymentMethod: 'Stripe',
     shippingAddress: {
       fullName: 'John Doe',
-      streetAddress: '1234 Main St',
-      city: 'Los Angeles',
-      postalCode: '90001',
-      country: 'USA'
+      streetAddress: '123 Main st',
+      city: 'New York',
+      postalCode: '10001',
+      country: 'US'
     },
     createdAt: new Date(),
     totalPrice: '100',
-    itemsPrice: '90',
+    taxPrice: '10',
     shippingPrice: '10',
-    taxPrice: '0',
+    itemsPrice: '80',
     orderitems: sampleData.products.map(x => ({
       name: x.name,
       orderId: '123',
@@ -106,15 +106,14 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
                 <Row key={item.productId} className="mt-8">
                   <Column className="w-20">
                     <Img
+                      width="80"
+                      alt={item.name}
                       className="rounded"
                       src={
                         item.image.startsWith('/')
                           ? `${process.env.NEXT_PUBLIC_SERVER_URL}${item.image}`
                           : item.image
                       }
-                      alt={item.name}
-                      width={80}
-                      height={80}
                     />
                   </Column>
                   <Column className="align-top">
