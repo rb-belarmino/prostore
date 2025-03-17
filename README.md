@@ -1,88 +1,89 @@
-# Nome do Projeto: [Nome do seu E-commerce]
+# Project Name: Prostore
 
-## Descrição
+## Description
 
-Este projeto é um exemplo de e-commerce construído com as mais recentes tecnologias do ecossistema JavaScript, como Next.js 15, React 19 e TypeScript. Utilizamos ferramentas como Prisma ORM e Jest para garantir a qualidade e a escalabilidade do projeto, oferecendo um serviço de alto nível para nossos clientes.
+This project is an example of an e-commerce platform built with the latest technologies in the JavaScript ecosystem, such as Next.js 15, React 19, and TypeScript. We utilize tools like Prisma ORM and Jest to ensure the project's quality and scalability, providing a high-level service to our customers.
 
-## Funcionalidades Principais
+## Key Features
 
-* **Catálogo de Produtos:** Navegue por uma ampla variedade de produtos, com descrições detalhadas, imagens e preços.
-* **Carrinho de Compras:** Adicione e remova produtos do seu carrinho de compras de forma fácil e intuitiva.
-* **Checkout Simplificado:** Processo de checkout rápido e seguro, com opções de pagamento flexíveis.
-* **Formas de Pagamento via Stripe:** Aceitamos diversos métodos de pagamento através da integração com o Stripe, garantindo segurança e praticidade.
-* **Resumo da Compra:** Visualize um resumo completo do seu pedido antes de finalizar a compra, incluindo produtos, preços e taxas.
-* **Histórico de Compras:** Acompanhe o histórico de suas compras anteriores, com detalhes de pedidos e status de entrega.
-* **Cadastro e Autenticação de Usuários:** Crie sua conta ou faça login para ter acesso a funcionalidades exclusivas e personalizadas.
-* **Busca Inteligente:** Encontre produtos rapidamente utilizando nossa ferramenta de busca avançada.
-* **Avaliações e Reviews de Produtos:** Compartilhe sua opinião sobre os produtos e veja o que outros clientes têm a dizer.
-* **Listas de Desejos:** Salve seus produtos favoritos para comprar mais tarde.
+* **Product Catalog:** Browse a wide variety of products with detailed descriptions, images, and prices.
+* **Shopping Cart:** Easily and intuitively add and remove products from your shopping cart.
+* **Simplified Checkout:** Fast and secure checkout process with flexible payment options.
+* **Stripe Payment Methods:** We accept various payment methods through Stripe integration, ensuring security and convenience.
+* **Order Summary:** View a complete summary of your order before finalizing the purchase, including products, prices, and fees.
+* **Purchase History:** Track your past purchases with order details and delivery status.
+* **User Registration and Authentication:** Create your account or log in to access exclusive and personalized features.
+* **Smart Search:** Quickly find products using our advanced search tool.
+* **Product Ratings and Reviews:** Share your opinion on products and see what other customers have to say.
+* **Wish Lists:** Save your favorite products to buy later.
 
-
-## Tecnologias Utilizadas
+## Technologies Used
 
 * **Frontend**:
     * [Next.js 15](https://nextjs.org/)
     * [React 19](https://react.dev/)
     * [React Hook Form](https://react-hook-form.com/)
     * [Shadcn UI](https://ui.shadcn.com/)
-    * [Typescript](https://www.typescriptlang.org/)
+    * [TypeScript](https://www.typescriptlang.org/)
     * [Zod](https://zod.dev/)
 * **Backend**:
     * [Next Auth](https://next-auth.js.org/)
     * [Prisma ORM](https://www.prisma.io/)
-* **Testes**:
+* **Testing**:
     * [Jest](https://jestjs.io/)
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
+Before you begin, ensure you have the following tools installed:
 
-* [Node.js](https://nodejs.org/) (versão mínima recomendada: [versão])
-* [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+* [Node.js](https://nodejs.org/) (minimum recommended version: [version])
+* [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-## Instalação
+## Installation
 
-1.  Clone o repositório:
-
-    ```bash
-    git clone [https://github.com/dolthub/dolt](https://github.com/dolthub/dolt)
-    cd [nome do repositório]
-    ```
-
-2.  Instale as dependências:
+1.  Clone the repository:
 
     ```bash
-    npm install # Ou yarn install
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    cd your-repo-name
     ```
 
-3.  Configure as variáveis de ambiente:
+    *Replace the bracketed link above with your github repo link, and replace "your-repo-name" with your repo name.*
 
-    * Crie um arquivo `.env.local` na raiz do projeto.
-    * Adicione as variáveis de ambiente necessárias (por exemplo, chaves de API, URLs do banco de dados, etc.). Exemplo:
+2.  Install dependencies:
+
+    ```bash
+    npm install # Or yarn install
+    ```
+
+3.  Configure environment variables:
+
+    * Create a `.env.local` file in the project root.
+    * Add the necessary environment variables (e.g., API keys, database URLs, etc.). Example:
 
         ```
-        DATABASE_URL="sua_url_do_banco_de_dados"
-        NEXTAUTH_SECRET="seu_segredo_nextauth"
+        DATABASE_URL="your_database_url"
+        NEXTAUTH_SECRET="your_nextauth_secret"
         NEXTAUTH_URL="http://localhost:3000"
         ```
 
-4.  Execute as migrações do Prisma:
+4.  Run Prisma migrations:
 
     ```bash
     npx prisma migrate dev
     ```
 
-5.  Inicie o servidor de desenvolvimento:
+5.  Start the development server:
 
     ```bash
-    npm run dev # Ou yarn dev
+    npm run dev # Or yarn dev
     ```
 
-6.  Abra o navegador e acesse `http://localhost:3000`.
+6.  Open your browser and navigate to `http://localhost:3000`.
 
-## Testes
+## Testing
 
-Para executar os testes, utilize o seguinte comando:
+To run the tests, use the following command:
 
 ```bash
-npm run test # Ou yarn test
+npm run test # Or yarn test
