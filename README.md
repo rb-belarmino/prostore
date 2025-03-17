@@ -36,7 +36,7 @@ This project is an example of an e-commerce platform built with the latest techn
 
 Before you begin, ensure you have the following tools installed:
 
-* [Node.js](https://nodejs.org/) (minimum recommended version: [version])
+* [Node.js](https://nodejs.org/) (minimum recommended version: 23.5.0)
 * [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
 ## Installation
