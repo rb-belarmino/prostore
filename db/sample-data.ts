@@ -1,17 +1,15 @@
-import { hashSync } from 'bcrypt-ts-edge'
-
 const sampleData = {
   users: [
     {
-      name: 'John Doe',
+      name: 'John',
       email: 'admin@example.com',
-      password: hashSync('123456', 10),
+      password: '123456',
       role: 'admin'
     },
     {
-      name: 'Mary Jane',
+      name: 'Jane',
       email: 'user@example.com',
-      password: hashSync('123456', 10),
+      password: '123456',
       role: 'user'
     }
   ],
@@ -31,7 +29,7 @@ const sampleData = {
       numReviews: 10,
       stock: 5,
       isFeatured: true,
-      banner: 'banner-1.jpg'
+      banner: '/images/banner-1.jpg'
     },
     {
       name: 'Brooks Brothers Long Sleeved Shirt',
@@ -42,13 +40,13 @@ const sampleData = {
         '/images/sample-products/p2-1.jpg',
         '/images/sample-products/p2-2.jpg'
       ],
-      price: 85.95,
+      price: 85.9,
       brand: 'Brooks Brothers',
       rating: 4.2,
       numReviews: 8,
       stock: 10,
       isFeatured: true,
-      banner: 'banner-2.jpg'
+      banner: '/images/banner-2.jpg'
     },
     {
       name: 'Tommy Hilfiger Classic Fit Dress Shirt',
