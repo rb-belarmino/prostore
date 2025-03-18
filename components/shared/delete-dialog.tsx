@@ -1,9 +1,8 @@
-'use client'
-
-import { useState } from 'react'
-import { useTransition } from 'react'
-import { useToast } from '@/hooks/use-toast'
-import { Button } from '../ui/button'
+'use client';
+import { useState } from 'react';
+import { useTransition } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { Button } from '../ui/button';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -12,58 +11,57 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
-} from '../ui/alert-dialog'
+  AlertDialogTrigger,
+} from '../ui/alert-dialog';
 
 const DeleteDialog = ({
   id,
-  action
+  action,
 }: {
-  id: string
-  action: (id: string) => Promise<{ success: boolean; message: string }>
+  id: string;
+  action: (id: string) => Promise<{ success: boolean; message: string }>;
 }) => {
-  const [open, setOpen] = useState(false)
-  const [isPending, startTransition] = useTransition()
-  const { toast } = useToast()
+  const [open, setOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   const handleDeleteClick = () => {
     startTransition(async () => {
-      const res = await action(id)
+      const res = await action(id);
+
       if (!res.success) {
         toast({
           variant: 'destructive',
-          description: res.message
-        })
+          description: res.message,
+        });
       } else {
-        setOpen(false)
+        setOpen(false);
         toast({
-          description: res.message
-        })
+          description: res.message,
+        });
       }
-    })
-  }
+    });
+  };
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" size="sm" className="ml-2">
+        <Button size='sm' variant='destructive' className='ml-2'>
           Delete
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            Are you sure you want to delete this order?
-          </AlertDialogTitle>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone.
+            This action cannot be undone
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <Button
-            variant="destructive"
-            size="sm"
+            variant='destructive'
+            size='sm'
             disabled={isPending}
             onClick={handleDeleteClick}
           >
@@ -72,7 +70,7 @@ const DeleteDialog = ({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
-}
+  );
+};
 
-export default DeleteDialog
+export default DeleteDialog;

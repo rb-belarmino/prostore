@@ -1,9 +1,9 @@
-import React from 'react'
-import { cn } from '@/lib/utils'
+import React from 'react';
+import { cn } from '@/lib/utils';
 
 const CheckoutSteps = ({ current = 0 }) => {
   return (
-    <div className="flex-between flex-col md:flex-row space-x-2 mb-10">
+    <div className='flex-between flex-col md:flex-row space-x-2 space-y-2 mb-10'>
       {['User Login', 'Shipping Address', 'Payment Method', 'Place Order'].map(
         (step, index) => (
           <React.Fragment key={step}>
@@ -16,13 +16,13 @@ const CheckoutSteps = ({ current = 0 }) => {
               {step}
             </div>
             {step !== 'Place Order' && (
-              <hr className="border-t border-gray-300 w-16 mx-2" />
+              <hr className='w-16 border-t border-gray-300 mx-2' />
             )}
           </React.Fragment>
         )
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutSteps
+export default CheckoutSteps;

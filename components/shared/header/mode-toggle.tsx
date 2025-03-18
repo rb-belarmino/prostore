@@ -1,34 +1,35 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+'use client';
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuContent,
-  DropdownMenuCheckboxItem
-} from '@/components/ui/dropdown-menu'
-import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, SunMoon } from 'lucide-react'
+  DropdownMenuCheckboxItem,
+} from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
+import { SunIcon, MoonIcon, SunMoon } from 'lucide-react';
 
 const ModeToggle = () => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
-          className="focus-visible:ring-0 focus-visible:ring-offset-0"
+          variant='ghost'
+          className='focus-visible:ring-0 focus-visible:ring-offset-0'
         >
           {theme === 'system' ? (
             <SunMoon />
@@ -62,7 +63,7 @@ const ModeToggle = () => {
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default ModeToggle
+export default ModeToggle;

@@ -1,40 +1,39 @@
-'use client'
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import React from 'react';
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import React from 'react'
-
-const link = [
+const links = [
   {
     title: 'Overview',
-    href: '/admin/overview'
+    href: '/admin/overview',
   },
   {
     title: 'Products',
-    href: '/admin/products'
+    href: '/admin/products',
   },
   {
     title: 'Orders',
-    href: '/admin/orders'
+    href: '/admin/orders',
   },
   {
     title: 'Users',
-    href: '/admin/users'
-  }
-]
+    href: '/admin/users',
+  },
+];
 
 const MainNav = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <nav
       className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
-      {link.map(item => (
+      {links.map((item) => (
         <Link
           key={item.href}
           href={item.href}
@@ -47,7 +46,7 @@ const MainNav = ({
         </Link>
       ))}
     </nav>
-  )
-}
+  );
+};
 
-export default MainNav
+export default MainNav;

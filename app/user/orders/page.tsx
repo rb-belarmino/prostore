@@ -1,32 +1,34 @@
-import { Metadata } from 'next'
-import { getMyOrders } from '@/lib/actions/order.actions'
-import { formatCurrency, formatDateTime, formatId } from '@/lib/utils'
-import Link from 'next/link'
+import { Metadata } from 'next';
+import { getMyOrders } from '@/lib/actions/order.actions';
+import { formatCurrency, formatDateTime, formatId } from '@/lib/utils';
+import Link from 'next/link';
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
-} from '@/components/ui/table'
-import Pagination from '@/components/shared/pagination'
+  TableRow,
+} from '@/components/ui/table';
+import Pagination from '@/components/shared/pagination';
 
 export const metadata: Metadata = {
-  title: 'My Orders'
-}
+  title: 'My Orders',
+};
 
 const OrdersPage = async (props: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string }>;
 }) => {
-  const { page } = await props.searchParams
+  const { page } = await props.searchParams;
 
-  const orders = await getMyOrders({ page: Number(page) || 1 })
+  const orders = await getMyOrders({
+    page: Number(page) || 1,
+  });
 
   return (
-    <div className="space-y-2">
-      <h2 className="h2-bold">Orders</h2>
-      <div className="overflow-x-auto">
+    <div className='space-y-2'>
+      <h2 className='h2-bold'>Orders</h2>
+      <div className='overflow-x-auto'>
         <Table>
           <TableHeader>
             <TableRow>
@@ -39,7 +41,7 @@ const OrdersPage = async (props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.data.map(order => (
+            {orders.data.map((order) => (
               <TableRow key={order.id}>
                 <TableCell>{formatId(order.id)}</TableCell>
                 <TableCell>
@@ -58,7 +60,7 @@ const OrdersPage = async (props: {
                 </TableCell>
                 <TableCell>
                   <Link href={`/order/${order.id}`}>
-                    <span className="px-2">Details</span>
+                    <span className='px-2'>Details</span>
                   </Link>
                 </TableCell>
               </TableRow>
@@ -73,7 +75,7 @@ const OrdersPage = async (props: {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrdersPage
+export default OrdersPage;
